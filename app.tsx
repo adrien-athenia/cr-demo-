@@ -1,19 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import loginMagalieClean from "./login-magalie-clean.png";
 
 const MODE_DEMO = import.meta.env.VITE_MODE_DEMO === "true";
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "";
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
-const ORGANISATION_ID =
-  import.meta.env.VITE_ORGANISATION_ID || "cb054195-f444-4e3b-af92-61ac6373babf";
 
-const supabase =
+const ORGANISATION_ID =
+  import.meta.env.VITE_ORGANISATION_ID ||
+  "f8671b09-e60b-44cb-9f8e-2804db12db92";
+
+  const supabase =
   !MODE_DEMO && SUPABASE_URL && SUPABASE_ANON_KEY
     ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     : null;
 
-type Role = "coach" | "sportif";
-type RecurrenceCours = "unique" | "hebdo" | "bihebdo" | "mensuel";
 
 type Sportif = {
   id: string;
@@ -257,12 +258,12 @@ const PREVIEW_PROFILE: Profile = {
   user_id: "preview-user",
   organisation_id: ORGANISATION_ID,
   role: "coach",
-  nom: "Rémi",
+  nom: "Magalie",
   prenom: "Coach",
 };
 
 const PREVIEW_SPORTIFS: Sportif[] = [
-  { id: "s1", organisation_id: ORGANISATION_ID, prenom: "Lucas", nom: "Martin", email: "lucas@test.fr", telephone: "06 12 34 56 78", niveau: "Football", notes: "Travaille vitesse et endurance." },
+  { id: "s1", organisation_id: ORGANISATION_ID, prenom: "Lucas", nom: "Martin", email: "lucas@test.fr", telephone: "06 12 34 56 78", niveau: "Pilates", notes: "Travaille vitesse et endurance." },
   { id: "s2", organisation_id: ORGANISATION_ID, prenom: "Emma", nom: "Dupont", email: "emma@test.fr", telephone: "06 22 34 56 78", niveau: "Athlétisme", notes: "Très régulière." },
   { id: "s3", organisation_id: ORGANISATION_ID, prenom: "Hugo", nom: "Bernard", email: "hugo@test.fr", telephone: "06 32 34 56 78", niveau: "Rugby", notes: "Objectif force." },
   { id: "s4", organisation_id: ORGANISATION_ID, prenom: "Chloé", nom: "Petit", email: "chloe@test.fr", telephone: "06 42 34 56 78", niveau: "Natation", notes: "Travail cardio." },
@@ -670,7 +671,7 @@ button{touch-action:manipulation}
     radial-gradient(circle at 10% 12%,rgba(167,255,22,.018),transparent 34%),
     linear-gradient(180deg,#020202 0%,#010101 54%,#000000 100%);
 }
-.premium-header{
+.pmagalieum-header{
   position:relative;
   z-index:2;
   display:flex;
@@ -679,8 +680,8 @@ button{touch-action:manipulation}
   gap:14px;
   margin:4px 0 18px;
 }
-.premium-brand{display:flex;align-items:center;gap:12px;min-width:0;}
-.premium-logo{
+.pmagalieum-brand{display:flex;align-items:center;gap:12px;min-width:0;}
+.pmagalieum-logo{
   width:58px;height:58px;
   border-radius:20px;
   background:rgba(3,3,3,.94);
@@ -689,10 +690,10 @@ button{touch-action:manipulation}
   overflow:hidden;
   box-shadow:0 12px 30px rgba(0,0,0,.28),0 0 22px rgba(167,255,22,.10);
 }
-.premium-logo img{width:100%;height:100%;object-fit:cover;display:block;}
-.premium-eyebrow{font-size:12px;color:var(--green);font-weight:800;letter-spacing:.6px;text-transform:uppercase;}
-.premium-mini{font-size:12px;color:#9ca9b3;margin-top:3px;font-weight:600;}
-.premium-actions{display:flex;align-items:center;gap:9px;flex:0 0 auto;}
+.pmagalieum-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+.pmagalieum-eyebrow{font-size:12px;color:var(--green);font-weight:800;letter-spacing:.6px;text-transform:uppercase;}
+.pmagalieum-mini{font-size:12px;color:#9ca9b3;margin-top:3px;font-weight:600;}
+.pmagalieum-actions{display:flex;align-items:center;gap:9px;flex:0 0 auto;}
 .icon-btn{
   width:44px;height:44px;
   border-radius:16px;
@@ -723,7 +724,7 @@ button{touch-action:manipulation}
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 12px rgba(255,48,72,.45);
 }
-.premium-hero{
+.pmagalieum-hero{
   position:relative;
   z-index:1;
   margin:0 0 18px;
@@ -734,7 +735,7 @@ button{touch-action:manipulation}
   box-shadow:0 18px 45px rgba(0,0,0,.45),inset 0 0 35px rgba(167,255,22,.020);
   overflow:hidden;
 }
-.premium-hero::after{
+.pmagalieum-hero::after{
   content:"";
   position:absolute;
   width:130px;height:130px;
@@ -762,13 +763,13 @@ button{touch-action:manipulation}
 }
 .hero-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1;}
 .hero-tools .btn{min-height:40px;padding:9px 12px;border-radius:14px;font-size:13px;box-shadow:none;}
-.premium-grid{
+.pmagalieum-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
   margin:0 0 22px;
 }
-.kpi.premium-kpi{
+.kpi.pmagalieum-kpi{
   min-height:118px;
   text-align:left;
   padding:15px;
@@ -777,7 +778,7 @@ button{touch-action:manipulation}
   border:1px solid rgba(167,255,22,.12);
   box-shadow:0 14px 32px rgba(0,0,0,.46),inset 0 0 30px rgba(167,255,22,.014);
 }
-.kpi.premium-kpi::before{display:none;}
+.kpi.pmagalieum-kpi::before{display:none;}
 .kpi-icon{
   width:38px;height:38px;
   border-radius:15px;
@@ -787,8 +788,8 @@ button{touch-action:manipulation}
   margin-bottom:12px;
   font-size:18px;
 }
-.kpi.premium-kpi b{font-size:28px;line-height:1;font-weight:950;}
-.kpi.premium-kpi span{font-size:13px;color:#c9d3da;margin-top:6px;font-weight:750;}
+.kpi.pmagalieum-kpi b{font-size:28px;line-height:1;font-weight:950;}
+.kpi.pmagalieum-kpi span{font-size:13px;color:#c9d3da;margin-top:6px;font-weight:750;}
 .kpi-trend{font-size:11px;color:#8f9ba5;margin-top:6px;font-weight:650;}
 
 .sportif-quick-actions{
@@ -1046,14 +1047,14 @@ button{touch-action:manipulation}
 body .floating{display:none;}
 @media(max-width:430px){
   .app{padding:18px 13px 24px;}
-  .premium-logo{width:54px;height:54px;border-radius:18px;}
-  .premium-actions{gap:7px;}
+  .pmagalieum-logo{width:54px;height:54px;border-radius:18px;}
+  .pmagalieum-actions{gap:7px;}
   .icon-btn{width:41px;height:41px;border-radius:15px;}
   .hello-title{font-size:24px;}
-  .premium-hero{padding:16px;border-radius:26px;}
-  .premium-grid{gap:10px;}
-  .kpi.premium-kpi{min-height:112px;padding:14px;border-radius:22px;}
-  .kpi.premium-kpi b{font-size:26px;}
+  .pmagalieum-hero{padding:16px;border-radius:26px;}
+  .pmagalieum-grid{gap:10px;}
+  .kpi.pmagalieum-kpi{min-height:112px;padding:14px;border-radius:22px;}
+  .kpi.pmagalieum-kpi b{font-size:26px;}
 }
 
 /* ===== PAGE CONNEXION IMAGE OFFICIELLE CR - VERSION SANS CHOIX COACH/SPORTIF ===== */
@@ -1808,10 +1809,277 @@ html,body,#root{
 
 
 /* ===== V1.20 - HEADER FORCE COACHING & RESERVATIONS ===== */
-.premium-eyebrow{
+.pmagalieum-eyebrow{
   text-transform:none!important;
   letter-spacing:.4px!important;
 }
+
+
+/* ===== V1.21 - THEME MAGALIE PILATES ROSE / VIOLET ===== */
+:root{
+  --bg:#fff7fc!important;
+  --bg2:#fbeaf6!important;
+  --card:#ffffff!important;
+  --card2:#fff2fa!important;
+  --txt:#27313b!important;
+  --muted:#7f6d7c!important;
+  --green:#ec5fa8!important;
+  --green2:#b875d6!important;
+  --greenSoft:rgba(236,95,168,.14)!important;
+  --red:#ef4d73!important;
+  --redSoft:rgba(239,77,115,.12)!important;
+  --border:rgba(236,95,168,.28)!important;
+  --line:rgba(64,34,57,.10)!important;
+}
+
+/* Fond général clair, pastel et pmagalieum */
+body{
+  background:
+    radial-gradient(circle at 10% 8%, rgba(236,95,168,.18), transparent 30%),
+    radial-gradient(circle at 92% 4%, rgba(184,117,214,.18), transparent 34%),
+    linear-gradient(180deg,#fff8fd 0%,#fff2fa 52%,#ffffff 100%)!important;
+  color:#27313b!important;
+}
+
+/* Application complète */
+.app{
+  background:
+    radial-gradient(circle at 12% 4%, rgba(236,95,168,.16), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(184,117,214,.15), transparent 30%),
+    linear-gradient(180deg,#fff8fd 0%,#fff3fa 50%,#ffffff 100%)!important;
+  color:#27313b!important;
+}
+.app::before{
+  border-color:rgba(236,95,168,.22)!important;
+  box-shadow:0 0 42px rgba(236,95,168,.08)!important;
+}
+
+/* Header */
+.pmagalieum-header{
+  background:rgba(255,255,255,.56)!important;
+  border:1px solid rgba(236,95,168,.16)!important;
+  border-radius:24px!important;
+  padding:10px 12px!important;
+  box-shadow:0 12px 30px rgba(184,117,214,.10)!important;
+  backdrop-filter:blur(16px)!important;
+}
+.pmagalieum-logo{
+  background:linear-gradient(135deg,rgba(236,95,168,.14),rgba(184,117,214,.12))!important;
+  border-color:rgba(236,95,168,.26)!important;
+  box-shadow:0 12px 28px rgba(236,95,168,.18)!important;
+}
+.pmagalieum-eyebrow{
+  color:#2f3540!important;
+  font-weight:900!important;
+}
+.pmagalieum-mini,
+.hello-sub,
+.kpi-trend,
+.meta,
+.notif-date{
+  color:#7f6d7c!important;
+}
+
+/* Cartes */
+.pmagalieum-hero,
+.kpi.pmagalieum-kpi,
+.course,
+.person,
+.notif-card,
+.list-item,
+.empty-state,
+.mobile-planner-card,
+.modal{
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,246,252,.96))!important;
+  border:1px solid rgba(236,95,168,.18)!important;
+  box-shadow:0 16px 38px rgba(184,117,214,.14), inset 0 0 26px rgba(255,255,255,.45)!important;
+  color:#27313b!important;
+}
+.hello-title,
+.section-title,
+.course h3,
+.person h3,
+.notif-card h3,
+.modal h2,
+.kpi.pmagalieum-kpi b{
+  color:#27313b!important;
+  text-shadow:none!important;
+}
+.section-title::after{
+  background:linear-gradient(90deg,#ec5fa8,#b875d6)!important;
+  box-shadow:0 0 16px rgba(236,95,168,.38)!important;
+}
+
+/* KPI */
+.kpi-icon,
+.mobile-planner-title-icon,
+.empty-state-icon{
+  background:linear-gradient(135deg,rgba(236,95,168,.16),rgba(184,117,214,.12))!important;
+  border-color:rgba(236,95,168,.24)!important;
+  color:#ec5fa8!important;
+}
+.kpi.pmagalieum-kpi span{
+  color:#4f4650!important;
+}
+
+/* Boutons */
+.btn,
+.icon-btn.plus,
+.auth-submit-btn{
+  background:linear-gradient(135deg,#f45d9e,#b875d6)!important;
+  color:#ffffff!important;
+  border:0!important;
+  box-shadow:0 12px 26px rgba(236,95,168,.24)!important;
+}
+.btn.secondary,
+.icon-btn{
+  background:rgba(255,255,255,.86)!important;
+  color:#4f4650!important;
+  border:1px solid rgba(236,95,168,.20)!important;
+  box-shadow:0 8px 20px rgba(184,117,214,.10)!important;
+}
+.btn.red,
+.btn.danger-outline{
+  background:rgba(239,77,115,.08)!important;
+  color:#e84b71!important;
+  border:1px solid rgba(239,77,115,.42)!important;
+  box-shadow:none!important;
+}
+.icon-badge,
+.notif-dot{
+  background:#ec5fa8!important;
+  color:#fff!important;
+}
+
+/* Planning */
+.week-picker-label,
+.week-label,
+.day-chip{
+  background:rgba(255,255,255,.86)!important;
+  border:1px solid rgba(236,95,168,.18)!important;
+  color:#27313b!important;
+}
+.day-chip.today,
+.tab.active{
+  background:linear-gradient(135deg,#f45d9e,#b875d6)!important;
+  color:#ffffff!important;
+  outline:none!important;
+  border-color:transparent!important;
+}
+.planner-grid{
+  background:
+    linear-gradient(90deg,rgba(236,95,168,.10) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(236,95,168,.10) 1px,transparent 1px),
+    rgba(255,255,255,.72)!important;
+  border:1px solid rgba(236,95,168,.14)!important;
+}
+.time-col{
+  color:#6f6270!important;
+}
+.planner-event,
+.planner-event.alt{
+  background:linear-gradient(180deg,#f45d9e,#b875d6)!important;
+  border:2px solid rgba(255,255,255,.88)!important;
+  color:#ffffff!important;
+  box-shadow:0 10px 22px rgba(236,95,168,.28)!important;
+}
+.planner-event-duration{
+  background:rgba(255,255,255,.22)!important;
+  border-color:rgba(255,255,255,.34)!important;
+}
+
+/* Navigation basse */
+.tabs-inner{
+  background:rgba(255,255,255,.90)!important;
+  border:1px solid rgba(236,95,168,.18)!important;
+  box-shadow:0 -10px 28px rgba(184,117,214,.13)!important;
+}
+.tab{
+  color:#897586!important;
+}
+
+/* Formulaires / modales */
+.field label,
+.auth-field-label,
+.auth-reset-field label{
+  color:#473a47!important;
+}
+.field input,
+.field select,
+.field textarea,
+.auth-reset-field input{
+  background:rgba(255,255,255,.92)!important;
+  color:#27313b!important;
+  border:1px solid rgba(236,95,168,.22)!important;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.auth-reset-field input:focus{
+  border-color:rgba(236,95,168,.65)!important;
+  box-shadow:0 0 0 3px rgba(236,95,168,.12)!important;
+}
+
+/* Page connexion Magalie */
+.auth{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(236,95,168,.16),transparent 32%),
+    linear-gradient(180deg,#fff8fd,#fff2fa)!important;
+}
+.auth-poster{
+  background:#fff8fd!important;
+  box-shadow:0 0 70px rgba(184,117,214,.22)!important;
+}
+.auth-form-card{
+  background:rgba(255,255,255,.55)!important;
+  border:1px solid rgba(236,95,168,.16)!important;
+  border-radius:24px!important;
+  padding:14px!important;
+  box-shadow:0 16px 38px rgba(184,117,214,.14)!important;
+  backdrop-filter:blur(12px)!important;
+}
+.auth-form-card .auth-real-input{
+  background:rgba(255,255,255,.92)!important;
+  border:1px solid rgba(236,95,168,.28)!important;
+  color:#27313b!important;
+  -webkit-text-fill-color:#27313b!important;
+  box-shadow:0 8px 18px rgba(184,117,214,.08)!important;
+}
+.auth-form-card .auth-real-input::placeholder{
+  color:rgba(78,64,78,.42)!important;
+}
+.auth-form-card .auth-real-input:focus{
+  border-color:rgba(236,95,168,.68)!important;
+  box-shadow:0 0 0 3px rgba(236,95,168,.12),0 8px 18px rgba(184,117,214,.08)!important;
+}
+.auth-field-icon,
+.auth-eye-btn,
+.auth-forgot-btn{
+  color:#ec5fa8!important;
+}
+.auth-remember{
+  color:#473a47!important;
+}
+.auth-contact-btn{
+  color:#b14f91!important;
+}
+
+/* Modal édition cours : petits boutons thème Magalie */
+.edit-course-actions .edit-save-btn{
+  background:linear-gradient(135deg,#f45d9e,#b875d6)!important;
+  color:#fff!important;
+}
+.edit-course-actions .edit-delete-btn{
+  background:rgba(239,77,115,.08)!important;
+  color:#e84b71!important;
+  border:1px solid rgba(239,77,115,.45)!important;
+}
+.edit-course-actions .edit-cancel-btn{
+  background:rgba(255,255,255,.92)!important;
+  color:#5a4c59!important;
+  border:1px solid rgba(236,95,168,.20)!important;
+}
+
 `;
 
 export default function App() {
@@ -2477,7 +2745,7 @@ export default function App() {
     if (!newCours.date_cours) return notify("err", "Date obligatoire.");
     if (!newCours.heure_debut) return notify("err", "Heure de début obligatoire.");
     if (!newCours.heure_fin) return notify("err", "Heure de fin obligatoire.");
-    if (recurrence !== "unique" && newCours.date_fin_recurrence < newCours.date_cours) return notify("err", "La date de fin doit être après le premier cours.");
+    if (recurrence !== "unique" && newCours.date_fin_recurrence < newCours.date_cours) return notify("err", "La date de fin doit être après le pmagalieer cours.");
     if (recurrence !== "unique" && occurrences < 2) return notify("err", "La date de fin ne crée qu'un seul cours. Choisis une date plus éloignée.");
 
     const coursAInserer = dates.map((date_cours, index) => ({
@@ -2693,16 +2961,16 @@ export default function App() {
 
     const email = String(userEmail || "").trim().toLowerCase();
 
-    // Sécurité temporaire V1 : le compte Rémi est forcé en coach
+    // Sécurité temporaire V1 : le compte Magalie est forcé en coach
     // pour éviter les blocages de liaison profiles pendant la démo.
-    if (email === "remi@test.fr") {
+    if (email === "magalie@test.fr") {
       const connectedProfile: Profile = {
-        id: "coach-remi",
+        id: "coach-magalie",
         user_id: userId,
         organisation_id: ORGANISATION_ID,
         role: "coach",
-        nom: "Rémi",
-        prenom: "Rémi",
+        nom: "Magalie",
+        prenom: "Magalie",
       };
 
       setProfile(connectedProfile);
@@ -2786,8 +3054,6 @@ export default function App() {
   }
 
   async function login() {
-    if (!supabase) return notify("err", "Connexion Supabase indisponible.");
-
     const email = loginEmail.trim().toLowerCase();
     const password = loginPass.trim();
 
@@ -2795,8 +3061,35 @@ export default function App() {
       return notify("err", "Email et mot de passe obligatoires.");
     }
 
-    setLoading(true);
     localStorage.setItem("cr_remember_me", rememberMe ? "true" : "false");
+
+    // DEMO MAGALIE : accès direct si Supabase est désactivé ou si VITE_MODE_DEMO=true.
+    // Codes conseillés : demo@magalie.fr / 123456
+    if (MODE_DEMO || !supabase) {
+      const demoProfile: Profile = {
+        id: "coach-magalie-demo",
+        user_id: "demo-magalie",
+        organisation_id: ORGANISATION_ID,
+        role: "coach",
+        nom: "Magalie",
+        prenom: "Coach",
+      };
+
+      setProfile(demoProfile);
+      setRole("coach");
+      setLogged(true);
+      setAuthChecked(true);
+      setTab("planning");
+      setSportifs(PREVIEW_SPORTIFS);
+      setCours(PREVIEW_COURS);
+      setReservations(PREVIEW_RESERVATIONS);
+      setDemandesCreneaux(PREVIEW_DEMANDES);
+      setNotifications(PREVIEW_NOTIFICATIONS);
+      notify("ok", "Mode démo Magalie activé.");
+      return;
+    }
+
+    setLoading(true);
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -2984,7 +3277,7 @@ export default function App() {
         <div className="auth">
           <div className="auth-reset-card">
             <h1>Créer votre mot de passe</h1>
-            <p>Choisissez un mot de passe pour activer votre accès CR — COACHING & RÉSERVATIONS.</p>
+            <p>Choisissez un mot de passe pour activer votre accès Coach Magalie — Pilates & Bien-être.</p>
             <div className="auth-reset-field">
               <label>Nouveau mot de passe</label>
               <input
@@ -3025,8 +3318,8 @@ export default function App() {
           <div className="auth-poster">
             <img
               className="auth-poster-img"
-              src="/login-clean-no-fields.png"
-              alt="Coach Rémi"
+              src={loginMagalieClean}
+              alt="Coach Magalie"
             />
 
             <div className="auth-form-card">
@@ -3104,10 +3397,10 @@ export default function App() {
                 type="button"
                 className="auth-contact-btn"
                 onClick={() => {
-                  window.open("https://www.instagram.com/coachfootremi/", "_blank");
+                  window.open("https://www.instagram.com/", "_blank");
                 }}
               >
-                📸 Suivre Coach Rémi sur Instagram
+                📸 Suivre Coach Magalie
               </button>
             </div>
 
@@ -3122,23 +3415,23 @@ export default function App() {
     <>
       <style>{css}</style>
       <div className="app">
-        <div className="premium-header">
-          <div className="premium-brand">
-            <div className="premium-logo"><img src="/cr-icon.png" alt="CR" /></div>
+        <div className="pmagalieum-header">
+          <div className="pmagalieum-brand">
+            <div className="pmagalieum-logo"><img src="/cr-icon.png" alt="CR" /></div>
             <div>
-              <div className="premium-eyebrow">CR — COACHING & RÉSERVATIONS</div>
-              <div className="premium-mini">{role === "coach" ? "Espace coach" : "Espace sportif"}</div>
+              <div className="pmagalieum-eyebrow">Coach Magalie — Pilates & Bien-être</div>
+              <div className="pmagalieum-mini">{role === "coach" ? "Espace coach" : "Espace sportif"}</div>
             </div>
           </div>
-          <div className="premium-actions">
+          <div className="pmagalieum-actions">
             {role === "coach" && <button className="icon-btn" onClick={() => setTab("notifications")} aria-label="Notifications">🔔{notificationsNonLues > 0 && <span className="icon-badge">{notificationsNonLues}</span>}</button>}
             {role === "coach" && <button className="icon-btn plus" onClick={() => (tab === "sportifs" ? setShowSportifModal(true) : setShowCoursModal(true))} aria-label="Ajouter">+</button>}
             {role === "sportif" && <button className="icon-btn plus" onClick={() => setShowDemandeModal(true)} aria-label="Demander un créneau">+</button>}
           </div>
         </div>
 
-        <div className="premium-hero">
-          <h1 className="hello-title">{role === "coach" ? `Bonjour Coach ${profile?.prenom || profile?.nom || "Rémi"} 👋` : `Bonjour ${sportifConnecte?.prenom || profile?.prenom || "Sportif"} 👋`}</h1>
+        <div className="pmagalieum-hero">
+          <h1 className="hello-title">{role === "coach" ? `Bonjour Coach ${profile?.prenom || profile?.nom || "Magalie"} 👋` : `Bonjour ${sportifConnecte?.prenom || profile?.prenom || "Sportif"} 👋`}</h1>
           <div className="hello-sub">{role === "coach" ? "Voici un aperçu de votre activité" : "Votre espace sportif personnel"}</div>
           <div className="hero-tools">
             <button className="btn secondary" onClick={() => refreshAll()} disabled={loading}>Actualiser</button>
@@ -3146,18 +3439,18 @@ export default function App() {
           </div>
         </div>
 
-        {role === "coach" && <div className="premium-grid">
-          <div className="kpi premium-kpi"><div className="kpi-icon">👥</div><b>{sportifs.length}</b><span>Sportifs</span><div className="kpi-trend">Profils actifs</div></div>
-          <div className="kpi premium-kpi"><div className="kpi-icon">📅</div><b>{cours.length}</b><span>Cours</span><div className="kpi-trend">Planning total</div></div>
-          <div className="kpi premium-kpi"><div className="kpi-icon">📋</div><b>{totalInscrits}</b><span>Réservations</span><div className="kpi-trend">{remplissage}% de remplissage</div></div>
-          <div className="kpi premium-kpi"><div className="kpi-icon">✉️</div><b>{demandesEnAttente}</b><span>Demandes</span><div className="kpi-trend">{euros(ca)} estimés</div></div>
+        {role === "coach" && <div className="pmagalieum-grid">
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">👥</div><b>{sportifs.length}</b><span>Sportifs</span><div className="kpi-trend">Profils actifs</div></div>
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">📅</div><b>{cours.length}</b><span>Cours</span><div className="kpi-trend">Planning total</div></div>
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">📋</div><b>{totalInscrits}</b><span>Réservations</span><div className="kpi-trend">{remplissage}% de remplissage</div></div>
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">✉️</div><b>{demandesEnAttente}</b><span>Demandes</span><div className="kpi-trend">{euros(ca)} estimés</div></div>
         </div>}
 
-        {role === "sportif" && <div className="premium-grid">
-          <div className="kpi premium-kpi"><div className="kpi-icon">📅</div><b>{coursSemaine.length}</b><span>Cours</span><div className="kpi-trend">Cette semaine</div></div>
-          <div className="kpi premium-kpi"><div className="kpi-icon">📋</div><b>{reservationsVisibles().length}</b><span>Réservations</span><div className="kpi-trend">Actives</div></div>
-          <div className="kpi premium-kpi"><div className="kpi-icon">✉️</div><b>{demandesCreneaux.filter((d) => sportifConnecte && String(d.sportif_id) === String(sportifConnecte.id)).length}</b><span>Demandes</span><div className="kpi-trend">Créneaux envoyés</div></div>
-          <div className="kpi premium-kpi"><div className="kpi-icon">👤</div><b>{sportifConnecte ? "OK" : "—"}</b><span>Profil</span><div className="kpi-trend">{sportifConnecte?.niveau || "À compléter"}</div></div>
+        {role === "sportif" && <div className="pmagalieum-grid">
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">📅</div><b>{coursSemaine.length}</b><span>Cours</span><div className="kpi-trend">Cette semaine</div></div>
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">📋</div><b>{reservationsVisibles().length}</b><span>Réservations</span><div className="kpi-trend">Actives</div></div>
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">✉️</div><b>{demandesCreneaux.filter((d) => sportifConnecte && String(d.sportif_id) === String(sportifConnecte.id)).length}</b><span>Demandes</span><div className="kpi-trend">Créneaux envoyés</div></div>
+          <div className="kpi pmagalieum-kpi"><div className="kpi-icon">👤</div><b>{sportifConnecte ? "OK" : "—"}</b><span>Profil</span><div className="kpi-trend">{sportifConnecte?.niveau || "À compléter"}</div></div>
         </div>}
 
         {role === "sportif" && <div className="sportif-quick-actions">
@@ -3269,7 +3562,7 @@ export default function App() {
 
       {editingSportif && <div className="modal-bg" onClick={() => setEditingSportif(null)}><div className="modal" onClick={(e) => e.stopPropagation()}><h2>Modifier le sportif</h2><div className="two"><div className="field"><label>Prénom</label><input value={editSportifForm.prenom} onChange={(e) => setEditSportifForm({ ...editSportifForm, prenom: e.target.value })}/></div><div className="field"><label>Nom</label><input value={editSportifForm.nom} onChange={(e) => setEditSportifForm({ ...editSportifForm, nom: e.target.value })}/></div><div className="field"><label>Email</label><input value={editSportifForm.email} onChange={(e) => setEditSportifForm({ ...editSportifForm, email: e.target.value })}/></div><div className="field"><label>Téléphone</label><input value={editSportifForm.telephone} onChange={(e) => setEditSportifForm({ ...editSportifForm, telephone: e.target.value })}/></div><div className="field"><label>Niveau</label><input value={editSportifForm.niveau} onChange={(e) => setEditSportifForm({ ...editSportifForm, niveau: e.target.value })}/></div><div className="field"><label>Notes coach</label><input value={editSportifForm.notes} onChange={(e) => setEditSportifForm({ ...editSportifForm, notes: e.target.value })}/></div></div><div className="actions"><button className="btn" onClick={modifierSportif} disabled={loading}>Enregistrer les modifications</button><button className="btn secondary" onClick={() => setEditingSportif(null)}>Annuler</button></div></div></div>}
 
-      {showCoursModal && <div className="modal-bg" onClick={() => setShowCoursModal(false)}><div className="modal" onClick={(e) => e.stopPropagation()}><h2>Créer un cours</h2><div className="two"><div className="field"><label>Titre</label><input value={newCours.titre} onChange={(e) => setNewCours({ ...newCours, titre: e.target.value })}/></div><div className="field"><label>Jour</label><select value={newCours.jour_semaine} onChange={(e) => setNewCours({ ...newCours, jour_semaine: e.target.value })}>{jours.map((j) => <option key={j}>{j}</option>)}</select></div><div className="field"><label>Date du premier cours</label><input type="date" value={newCours.date_cours} onChange={(e) => setNewCours({ ...newCours, date_cours: e.target.value })}/></div><div className="field"><label>Heure début</label><input type="time" value={newCours.heure_debut} onChange={(e) => setNewCours({ ...newCours, heure_debut: e.target.value })}/></div><div className="field"><label>Heure fin</label><input type="time" value={newCours.heure_fin} onChange={(e) => setNewCours({ ...newCours, heure_fin: e.target.value })}/></div><div className="field"><label>Lieu</label><input value={newCours.lieu} onChange={(e) => setNewCours({ ...newCours, lieu: e.target.value })}/></div><div className="field"><label>Tarif</label><input type="number" value={newCours.tarif} onChange={(e) => setNewCours({ ...newCours, tarif: e.target.value })}/></div><div className="field"><label>Capacité</label><input type="number" value={newCours.capacite_max} onChange={(e) => setNewCours({ ...newCours, capacite_max: e.target.value })}/></div><div className="field"><label>Récurrence</label><select value={newCours.recurrence} onChange={(e) => setNewCours({ ...newCours, recurrence: e.target.value as RecurrenceCours })}><option value="unique">Cours unique</option><option value="hebdo">Chaque semaine</option><option value="bihebdo">Toutes les 2 semaines</option><option value="mensuel">Tous les mois</option></select></div>{newCours.recurrence !== "unique" && <div className="field"><label>Répéter jusqu'au</label><input type="date" value={newCours.date_fin_recurrence} onChange={(e) => setNewCours({ ...newCours, date_fin_recurrence: e.target.value })}/></div>}</div>{newCours.recurrence !== "unique" && <div className="kpi" style={{marginTop:12,minHeight:"auto"}}><b style={{fontSize:18}}>{buildOccurrencesUntil(newCours.date_cours, newCours.recurrence, newCours.date_fin_recurrence).length} cours</b><span>{recurrenceLabel(newCours.recurrence)} du {fmtDate(newCours.date_cours)} au {fmtDate(newCours.date_fin_recurrence)}.</span></div>}<div className="actions"><button className="btn" onClick={creerCours} disabled={loading}>{newCours.recurrence === "unique" ? "Créer le cours" : "Créer les cours"}</button><button className="btn secondary" onClick={() => setShowCoursModal(false)}>Annuler</button></div></div></div>}
+      {showCoursModal && <div className="modal-bg" onClick={() => setShowCoursModal(false)}><div className="modal" onClick={(e) => e.stopPropagation()}><h2>Créer un cours</h2><div className="two"><div className="field"><label>Titre</label><input value={newCours.titre} onChange={(e) => setNewCours({ ...newCours, titre: e.target.value })}/></div><div className="field"><label>Jour</label><select value={newCours.jour_semaine} onChange={(e) => setNewCours({ ...newCours, jour_semaine: e.target.value })}>{jours.map((j) => <option key={j}>{j}</option>)}</select></div><div className="field"><label>Date du pmagalieer cours</label><input type="date" value={newCours.date_cours} onChange={(e) => setNewCours({ ...newCours, date_cours: e.target.value })}/></div><div className="field"><label>Heure début</label><input type="time" value={newCours.heure_debut} onChange={(e) => setNewCours({ ...newCours, heure_debut: e.target.value })}/></div><div className="field"><label>Heure fin</label><input type="time" value={newCours.heure_fin} onChange={(e) => setNewCours({ ...newCours, heure_fin: e.target.value })}/></div><div className="field"><label>Lieu</label><input value={newCours.lieu} onChange={(e) => setNewCours({ ...newCours, lieu: e.target.value })}/></div><div className="field"><label>Tarif</label><input type="number" value={newCours.tarif} onChange={(e) => setNewCours({ ...newCours, tarif: e.target.value })}/></div><div className="field"><label>Capacité</label><input type="number" value={newCours.capacite_max} onChange={(e) => setNewCours({ ...newCours, capacite_max: e.target.value })}/></div><div className="field"><label>Récurrence</label><select value={newCours.recurrence} onChange={(e) => setNewCours({ ...newCours, recurrence: e.target.value as RecurrenceCours })}><option value="unique">Cours unique</option><option value="hebdo">Chaque semaine</option><option value="bihebdo">Toutes les 2 semaines</option><option value="mensuel">Tous les mois</option></select></div>{newCours.recurrence !== "unique" && <div className="field"><label>Répéter jusqu'au</label><input type="date" value={newCours.date_fin_recurrence} onChange={(e) => setNewCours({ ...newCours, date_fin_recurrence: e.target.value })}/></div>}</div>{newCours.recurrence !== "unique" && <div className="kpi" style={{marginTop:12,minHeight:"auto"}}><b style={{fontSize:18}}>{buildOccurrencesUntil(newCours.date_cours, newCours.recurrence, newCours.date_fin_recurrence).length} cours</b><span>{recurrenceLabel(newCours.recurrence)} du {fmtDate(newCours.date_cours)} au {fmtDate(newCours.date_fin_recurrence)}.</span></div>}<div className="actions"><button className="btn" onClick={creerCours} disabled={loading}>{newCours.recurrence === "unique" ? "Créer le cours" : "Créer les cours"}</button><button className="btn secondary" onClick={() => setShowCoursModal(false)}>Annuler</button></div></div></div>}
 
       {editingCours && <div className="modal-bg" onClick={() => setEditingCours(null)}><div className="modal" onClick={(e) => e.stopPropagation()}><h2>Modifier le cours</h2><div className="two"><div className="field"><label>Titre</label><input value={editCoursForm.titre} onChange={(e) => setEditCoursForm({ ...editCoursForm, titre: e.target.value })}/></div><div className="field"><label>Jour</label><select value={editCoursForm.jour_semaine} onChange={(e) => setEditCoursForm({ ...editCoursForm, jour_semaine: e.target.value })}>{jours.map((j) => <option key={j}>{j}</option>)}</select></div><div className="field"><label>Date</label><input type="date" value={editCoursForm.date_cours} onChange={(e) => setEditCoursForm({ ...editCoursForm, date_cours: e.target.value })}/></div><div className="field"><label>Heure début</label><input type="time" value={editCoursForm.heure_debut} onChange={(e) => setEditCoursForm({ ...editCoursForm, heure_debut: e.target.value })}/></div><div className="field"><label>Heure fin</label><input type="time" value={editCoursForm.heure_fin} onChange={(e) => setEditCoursForm({ ...editCoursForm, heure_fin: e.target.value })}/></div><div className="field"><label>Lieu</label><input value={editCoursForm.lieu} onChange={(e) => setEditCoursForm({ ...editCoursForm, lieu: e.target.value })}/></div><div className="field"><label>Tarif</label><input type="number" value={editCoursForm.tarif} onChange={(e) => setEditCoursForm({ ...editCoursForm, tarif: e.target.value })}/></div><div className="field"><label>Capacité</label><input type="number" value={editCoursForm.capacite_max} onChange={(e) => setEditCoursForm({ ...editCoursForm, capacite_max: e.target.value })}/></div></div><div className="actions edit-course-actions"><button className="btn edit-save-btn" onClick={modifierCours} disabled={loading}>Enregistrer</button><button className="btn secondary edit-cancel-btn" onClick={() => setEditingCours(null)}>Annuler</button><button className="btn red edit-delete-btn" onClick={() => supprimerCours(editingCours.id)} disabled={loading}>Supprimer</button></div></div></div>}
 
